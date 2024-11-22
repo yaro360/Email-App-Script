@@ -1,0 +1,35 @@
+function sendNextEmail() {
+  const spreadsheetUrl = 'Enter the spreadsheet databse'; // Spreadsheet URL
+  const spreadsheet = SpreadsheetApp.openByUrl(spreadsheetUrl);
+  const sheet = spreadsheet.getSheetByName('Enter the Spreadsheet Title'); // Access the specific sheet by name
+
+  if (!sheet) {
+    Logger.log('Sheet not found. Please check the name of the sheet.');
+    return;
+  }
+
+  const lastRow = sheet.getLastRow();
+  let currentRow = sheet.getRange('L1').getValue(); // Store the current index in cell L1 (or any cell you desire)
+
+  // Validate that currentRow is a number
+  if (isNaN(currentRow) || currentRow < 2 || currentRow > lastRow) {
+    Logger.log('Invalid value in L1. Resetting to 2.');
+    currentRow = 2; // Reset to start from row 2 (assuming row 1 has headers)
+    sheet.getRange('L1').setValue(currentRow);
+  }
+
+  const emailAddress = sheet.getRange(currentRow, 4).getValue(); // Get email from column D (4th column or the column where your emails are located)
+  const subject = "Eter the email subject";
+  const body = `Type the entire body of your email to be sent`;
+
+  // Only send an email if a valid email address exists
+  if (emailAddress && emailAddress.includes('@')) {
+    MailApp.sendEmail(emailAddress, subject, body);
+    Logger.log(`Sent email to: ${emailAddress}`);
+  } else {
+    Logger.log(`Invalid email address in row ${currentRow}: ${emailAddress}`);
+  }
+
+  // Update L1 to point to the next row
+  sheet.getRange('L1').setValue(currentRow + 1);
+}
