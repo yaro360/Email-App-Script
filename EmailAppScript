@@ -1,5 +1,5 @@
 function sendNextEmail() {
-  const spreadsheetUrl = 'Enter the spreadsheet databse'; // Spreadsheet URL
+  const spreadsheetUrl = 'Enter the spreadsheet database'; // Spreadsheet URL
   const spreadsheet = SpreadsheetApp.openByUrl(spreadsheetUrl);
   const sheet = spreadsheet.getSheetByName('Enter the Spreadsheet Title'); // Access the specific sheet by name
 
