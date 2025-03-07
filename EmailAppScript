@@ -18,8 +18,8 @@ function sendNextEmail() {
     sheet.getRange('L1').setValue(currentRow);
   }
 
-  const emailAddress = sheet.getRange(currentRow, 4).getValue(); // Get email from column D (4th column or the column where your emails are located)
-  const subject = "Eter the email subject";
+  const emailAddress = sheet.getRange(currentRow, 4).getValue(); // Get email address from column D (4th column or the column where your emails are located)
+  const subject = "Enter the email subject";
   const body = `Type the entire body of your email to be sent`;
 
   // Only send an email if a valid email address exists
